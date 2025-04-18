@@ -1,13 +1,14 @@
-const express = require("express");
+/* Tiny static server so you can run `npm start` */
+import express from "express";
+import path    from "node:path";
+import open    from "open";
+
 const app = express();
 const PORT = 3000;
 
-app.use(express.static("public"));
-
-app.get("/", (req, res) => {
-  res.sendFile(__dirname + "/index.html");
-});
+app.use(express.static(path.resolve(".")));
 
 app.listen(PORT, () => {
-  console.log(`Game running at http://localhost:${PORT}`);
+  console.log(`Chernobyl Explorer running → http://localhost:${PORT}`);
+  open(`http://localhost:${PORT}`);
 });
